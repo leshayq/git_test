@@ -20,7 +20,6 @@ const character = {
     
         progressbar.classList.remove('low', 'critical');
     
-
         if (healthPercentage < 20) {
             progressbar.classList.add('critical'); 
         } else if (healthPercentage < 60) {
@@ -77,18 +76,43 @@ const mewtwo = {
 
 const logs = [
     '[ПЕРСОНАЖ №1] згадав щось важливе, але несподівано [ПЕРСОНАЖ №2] вдарив у передпліччя ворога.',
-	'[ПЕРСОНАЖ №1] поперхнувся, і за це [ПЕРСОНАЖ №2] з переляку приклав прямий удар коліном у лоб ворога.',
-	'[ПЕРСОНАЖ №1] забувся, але [ПЕРСОНАЖ №2], прийнявши вольове рішення, вдарив.',
-	'[ПЕРСОНАЖ №1] прийшов до тями, але [ПЕРСОНАЖ №2] випадково завдав потужного удару.',
-	'[ПЕРСОНАЖ №1] поперхнувся, але [ПЕРСОНАЖ №2] розтрощив кулаком супротивника.',
-	'[ПЕРСОНАЖ №1] здивувався, а [ПЕРСОНАЖ №2] вліпив підлий удар.',
-	'[ПЕРСОНАЖ №1] висморкався, але [ПЕРСОНАЖ №2] провів удар, що дробить.',
-	'[ПЕРСОНАЖ №1] похитнувся, і [ПЕРСОНАЖ №2] вдарив у ногу супротивника',
-	'[ПЕРСОНАЖ №1] засмутився, як [ПЕРСОНАЖ №2] вдарив стопою в живіт.',
-	'[ПЕРСОНАЖ №1] намагався щось сказати, але [ПЕРСОНАЖ №2] розбив брову супернику.'
+    '[ПЕРСОНАЖ №1] поперхнувся, і за це [ПЕРСОНАЖ №2] з переляку приклав прямий удар коліном у лоб ворога.',
+    '[ПЕРСОНАЖ №1] забувся, але [ПЕРСОНАЖ №2], прийнявши вольове рішення, вдарив.',
+    '[ПЕРСОНАЖ №1] прийшов до тями, але [ПЕРСОНАЖ №2] випадково завдав потужного удару.',
+    '[ПЕРСОНАЖ №1] поперхнувся, але [ПЕРСОНАЖ №2] розтрощив кулаком супротивника.',
+    '[ПЕРСОНАЖ №1] здивувався, а [ПЕРСОНАЖ №2] вліпив підлий удар.',
+    '[ПЕРСОНАЖ №1] висморкався, але [ПЕРСОНАЖ №2] провів удар, що дробить.',
+    '[ПЕРСОНАЖ №1] похитнувся, і [ПЕРСОНАЖ №2] вдарив у ногу супротивника',
+    '[ПЕРСОНАЖ №1] засмутився, як [ПЕРСОНАЖ №2] вдарив стопою в живіт.',
+    '[ПЕРСОНАЖ №1] намагався щось сказати, але [ПЕРСОНАЖ №2] розбив брову супернику.'
 ];
 
-function attackBothEnemies() {
+// Функція для створення обробника з замиканням
+const createButtonHandler = (button, limit, action) => {
+    let clicks = 0;
+
+    const handler = () => {
+        if (clicks < limit) {
+            clicks++;
+            console.log(`Кнопка "${button.textContent}" натиснута ${clicks} раз. Залишилось ${limit - clicks} натискань.`);
+            action();
+        } else {
+            console.log(`Ліміт натискань на кнопку "${button.textContent}" вичерпано.`);
+            button.disabled = true;
+        }
+    };
+
+    handler.reset = () => {
+        clicks = 0;
+        button.disabled = false;
+        console.log(`Кнопка "${button.textContent}" знову доступна.`);
+    };
+
+    return handler;
+};
+
+// Дії для кожної кнопки
+const attackBothEnemies = () => {
     const damageToEnemy = Math.floor(Math.random() * 20) + 5;
     const damageToMewtwo = Math.floor(Math.random() * 20) + 5;
 
@@ -101,9 +125,9 @@ function attackBothEnemies() {
     mewtwo.updateHealth();
     logAction('Mewtwo', damageToMewtwo, mewtwo.health);
     checkVictory(mewtwo.health, 'Ви перемогли Mewtwo!');
-}
+};
 
-function randomAttack() {
+const randomAttack = () => {
     const damage = Math.floor(Math.random() * 15) + 5;
     const target = Math.random() < 0.5 ? enemy : mewtwo;
 
@@ -111,13 +135,13 @@ function randomAttack() {
     target.updateHealth();
     logAction(target === enemy ? 'Charmander' : 'Mewtwo', damage, target.health);
     checkVictory(target.health, `Ви перемогли ${target === enemy ? 'Charmander' : 'Mewtwo'}!`);
-}
+};
 
 function logAction(target, damage, remainingHealth) {
     const logText = `${target} отримав ${damage} шкоди, залишилось ${remainingHealth} HP.`;
     const randomLog = logs[Math.floor(Math.random() * logs.length)];
     const formattedLog = randomLog.replace('[ПЕРСОНАЖ №1]', 'Гравець').replace('[ПЕРСОНАЖ №2]', target);
-    
+
     const newLogEntry = `<p>${formattedLog} (${logText})</p>`;
     logContainer.innerHTML = newLogEntry + logContainer.innerHTML;
 }
@@ -139,13 +163,16 @@ function resetGame() {
         mewtwo.updateHealth();
         alert('Гра скинута! Почніть новий бій!');
         logContainer.innerHTML = ''; 
+
+        // Скидаємо лічильники кнопок після завершення бою
+        kickHandler.reset();
+        randomAttackHandler.reset();
     }, 2000);
 }
 
-btnKick.addEventListener('click', function() {
-    attackBothEnemies();
-});
+// Встановлення обробників дій на кнопки
+const kickHandler = createButtonHandler(btnKick, 6, attackBothEnemies);
+const randomAttackHandler = createButtonHandler(btnRandomAttack, 6, randomAttack);
 
-btnRandomAttack.addEventListener('click', function() {
-    randomAttack();
-});
+btnKick.addEventListener('click', kickHandler);
+btnRandomAttack.addEventListener('click', randomAttackHandler);
