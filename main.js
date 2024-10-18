@@ -19,7 +19,6 @@ const character = {
         this.elProgressbarHP.classList.remove('low', 'critical');
 
         if (this.damageHP > 60) {
-            // normal
         } else if (this.damageHP > 30) {
             this.elProgressbarHP.classList.add('low');
         } else {
