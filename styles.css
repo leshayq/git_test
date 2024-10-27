@@ -39,9 +39,6 @@ body {
     height: 260px;
     position: relative;
     margin: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .playground {
@@ -473,3 +470,21 @@ h1 {
     padding: 6px 0;
 }
 
+.reset-game-div button{
+    position: relative;
+    background: white;
+    border: 2px solid #ffc55b;
+    border-radius: 10px;
+    min-height: 30px;
+    vertical-align: middle;
+    padding: 12px 20px;
+    outline: none !important;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.reset-game-div button:hover {
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffd78e), to(#ffc55b));
+    background: linear-gradient(to bottom, #ffd78e, #ffc55b);
+    border-color: white;
+}

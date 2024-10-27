@@ -16,10 +16,14 @@
              src="./assets/Pokemon_logo.png"
              alt="Pokemon">
     </header>
+    
+    <div class="reset-game-div">
+        <button id="btn-reset">Зкинути гру</button>
+    </div>
     <div class="playground">
         <div class="pokemon character">
             <span class="lvl">Lv. 1</span>
-            <img src="https://purepng.com/public/uploads/large/purepng.com-pokemonpokemonpocket-monsterspokemon-franchisefictional-speciesone-pokemonmany-pokemonone-pikachu-17015277846874rzz8.png" class="sprite">
+            <img id="img-player1" src="https://purepng.com/public/uploads/large/purepng.com-pokemonpokemonpocket-monsterspokemon-franchisefictional-speciesone-pokemonmany-pokemonone-pikachu-17015277846874rzz8.png" class="sprite">
             <div class="details">
                 <h2 class="name" id="name-character">Pikachu</h2>
                 <div class="hp">
@@ -32,13 +36,16 @@
         </div>
 
         <div class="control">
-            <button class="button" id="btn-kick">Thunder Jolt</button>
-            <button class="button" id="btn-random-attack">Thunder Bolt</button>
+            <button class="button" id="btn-kick">Thunder Jolt (0)</button>
+            <button class="button" id="btn-random-attack">Thunder Bolt (0)</button>
+            <button class="button" id="btn-electro-ball">Electro Ball (0)</button>
+            <button class="button" id="btn-volt-tackle">Volt Tackle (0)</button>
+            <button class="button" id="btn-thunder-crack">Thunder Crack (0)</button>
         </div>
 
         <div class="pokemon enemy">
             <span class="lvl">Lv. 1</span>
-            <img src="https://www.pngplay.com/wp-content/uploads/10/Charmander-Pokemon-PNG-Images-HD.png" class="sprite">
+            <img id="img-enemy1" src="https://www.pngplay.com/wp-content/uploads/10/Charmander-Pokemon-PNG-Images-HD.png" class="sprite">
             <div class="details">
                 <h2 class="name" id="name-enemy">Charmander</h2>
                 <div class="hp">
@@ -52,7 +59,7 @@
 
         <div class="pokemon mewtwo">
             <span class="lvl">Lv. 1</span>
-            <img src="https://archives.bulbagarden.net/media/upload/thumb/8/89/0150Mewtwo.png/800px-0150Mewtwo.png" class="sprite">
+            <img id="img-enemy2" src="https://archives.bulbagarden.net/media/upload/thumb/8/89/0150Mewtwo.png/800px-0150Mewtwo.png" class="sprite">
             <div class="details">
                 <h2 class="name" id="name-mewtwo">Mewtwo</h2>
                 <div class="hp">

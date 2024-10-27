@@ -1,30 +1,22 @@
 export class Pokemon {
-    constructor(name, health, progressbar, healthText) {
+    constructor(name, hp, progressBar, healthText) {
         this.name = name;
-        this.health = health;
-        this.progressbar = progressbar;
+        this.maxHp = hp;
+        this.hp = hp;
+        this.progressBar = progressBar;
         this.healthText = healthText;
-        this.updateHealth();
-    }
-
-    updateHealth() {
-        const healthPercentage = (this.health / 100) * 100;
-        this.progressbar.style.width = `${healthPercentage}%`;
-
-        this.progressbar.classList.remove('low', 'critical');
-
-        if (healthPercentage < 20) {
-            this.progressbar.classList.add('critical'); 
-        } else if (healthPercentage < 60) {
-            this.progressbar.classList.add('low'); 
-        }
-
-        this.healthText.textContent = `${this.health} / 100`;
     }
 
     takeDamage(damage) {
-        this.health -= damage;
-        this.updateHealth();
-        return this.health <= 0;
+        this.hp -= damage;
+        if (this.hp < 0) this.hp = 0;
+        this.updateHealthUI();
+        return this.hp === 0;
+    }
+
+    updateHealthUI() {
+        const healthPercent = (this.hp / this.maxHp) * 100;
+        this.progressBar.style.width = `${healthPercent}%`;
+        this.healthText.textContent = `${this.hp} / ${this.maxHp}`;
     }
 }
