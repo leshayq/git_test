@@ -1,83 +1,105 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Pokemon Fight</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./libs/bootstrap.min.css">
+  <link rel="stylesheet" href="./style/style.css">
+  <title>Quiz</title>
 </head>
+
 <body>
-<div class="body">
-    <header>
-        <img class="logo"
-             title="Reset Game"
-             src="./assets/Pokemon_logo.png"
-             alt="Pokemon">
-    </header>
-    
-    <div class="reset-game-div">
-        <button id="btn-reset">Зкинути гру</button>
-    </div>
-    <div class="playground">
-        <div class="pokemon character">
-            <span class="lvl">Lv. 1</span>
-            <img id="img-player1" src="https://purepng.com/public/uploads/large/purepng.com-pokemonpokemonpocket-monsterspokemon-franchisefictional-speciesone-pokemonmany-pokemonone-pikachu-17015277846874rzz8.png" class="sprite">
-            <div class="details">
-                <h2 class="name" id="name-character">Pikachu</h2>
-                <div class="hp">
-                    <div class="bar">
-                        <div class="health" id="progressbar-character" style="width: 100%;"></div>
-                    </div>
-                    <span class="text" id="health-character">100 / 100</span>
-                </div>
+
+  <header>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="align-items-center d-flex justify-content-between p-1 p-sm-2 p-md-3">
+            <div class="logo d-flex">
+              <div class="logo-img"></div>
+              <span class="logo-text h1">BURGER-QUIZ</span>
             </div>
-        </div>
-
-        <div class="control">
-            <button class="button" id="btn-kick">Thunder Jolt (0)</button>
-            <button class="button" id="btn-random-attack">Thunder Bolt (0)</button>
-            <button class="button" id="btn-electro-ball">Electro Ball (0)</button>
-            <button class="button" id="btn-volt-tackle">Volt Tackle (0)</button>
-            <button class="button" id="btn-thunder-crack">Thunder Crack (0)</button>
-        </div>
-
-        <div class="pokemon enemy">
-            <span class="lvl">Lv. 1</span>
-            <img id="img-enemy1" src="https://www.pngplay.com/wp-content/uploads/10/Charmander-Pokemon-PNG-Images-HD.png" class="sprite">
-            <div class="details">
-                <h2 class="name" id="name-enemy">Charmander</h2>
-                <div class="hp">
-                    <div class="bar">
-                        <div class="health" id="progressbar-enemy" style="width: 100%;"></div>
-                    </div>
-                    <span class="text" id="health-enemy">100 / 100</span>
-                </div>
+            <h1 class="contacts d-none d-md-block">RPZ</h1>
+            <div class="burger" id="burger">
+              <span></span>
+              <span></span>
+              <span></span>
             </div>
+          </div>
         </div>
+      </div>
+    </div>
+  </header>
 
-        <div class="pokemon mewtwo">
-            <span class="lvl">Lv. 1</span>
-            <img id="img-enemy2" src="https://archives.bulbagarden.net/media/upload/thumb/8/89/0150Mewtwo.png/800px-0150Mewtwo.png" class="sprite">
-            <div class="details">
-                <h2 class="name" id="name-mewtwo">Mewtwo</h2>
-                <div class="hp">
-                    <div class="bar">
-                        <div class="health" id="progressbar-mewtwo" style="width: 100%;"></div>
-                    </div>
-                    <span class="text" id="health-mewtwo">100 / 100</span>
-                </div>
-            </div>
+  <section class="main">
+    <div class="container">
+
+      <div class="row">
+        <div class="col">
+          <div class="d-flex justify-content-center p-1 p-sm-2 p-md-3">
+            <div class="content"></div>
+          </div>
         </div>
-    </div>
-    
-    <div id="logs" class="logs">
-    </div>
-</div>
+      </div>
 
-<div class="catch_screen"></div>
+      <div class="row">
+        <div class="col">
+          <div class="d-flex flex-column align-items-center p-1 p-sm-2 p-md-3">
+            <h2 class="main-title text-center h1">Пройди тест и собери</h2>
+            <h2 class="main-title text-center h1">бургер своей мечты</h2>
+          </div>
+        </div>
+      </div>
 
-<script type="module" src="main.js"></script>
+      <div class="row">
+        <div class="col">
+          <div class="d-flex justify-content-center p-1 p-sm-2 p-md-3">
+            <div class="arrow display-4">&dArr;</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="d-flex justify-content-center p-1 p-sm-2 p-md-3">
+            <button type="button" class="btn btn-outline-danger openModalButton" id="btnOpenModal">
+              <span class="btnText h1">Пройди тест и получи результат</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="modal" tabindex="-1" role="dialog" id="modalBlock">
+    <div class="modal-dialog  modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Ответь на вопрос:</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeModal">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body  d-flex flex-column align-items-center" id="modalBody">
+          <h5 class="question p-1 p-sm-2 p-md-3 text-center" id="question"></h5>
+          <div class="answers w-100 p-1 p-sm-2 p-md-3" id="answers">
+            <form action="#" id="formAnswers" class="formAnswers d-flex flex-wrap justify-content-around">
+            </form>
+          </div>
+        </div>
+        <div class="modal-footer" id="modalFooter">
+          <button type="button" class="btn btn-secondary prevBtn" data-dismiss="modal" id="prev">Prev</button>
+          <button type="button" class="btn btn-secondary nextBtn" data-dismiss="modal" id="next">Next</button>
+          <button type="button" class="btn btn-primary sendBtn d-none" id="send">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./script/script.js"></script>
 </body>
+
 </html>
