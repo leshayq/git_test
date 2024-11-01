@@ -92,6 +92,8 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         
         const displayQuestion = (idx) => {
+            previousBtn.classList.toggle('hidden', idx === 0);
+            nextBtn.classList.toggle('hidden', idx === quizData.length - 1);
             answerContainer.innerHTML = '';
             questionHeading.textContent = quizData[idx].question;
             showAnswers(idx);
