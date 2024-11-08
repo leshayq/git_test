@@ -22,11 +22,6 @@
               <span class="logo-text h1">BURGER-QUIZ</span>
             </div>
             <h1 class="contacts d-none d-md-block">RPZ</h1>
-            <div class="burger" id="burger">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
           </div>
         </div>
       </div>
@@ -35,7 +30,6 @@
 
   <section class="main">
     <div class="container">
-
       <div class="row">
         <div class="col">
           <div class="d-flex justify-content-center p-1 p-sm-2 p-md-3">
@@ -56,14 +50,6 @@
       <div class="row">
         <div class="col">
           <div class="d-flex justify-content-center p-1 p-sm-2 p-md-3">
-            <div class="arrow display-4">&dArr;</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col">
-          <div class="d-flex justify-content-center p-1 p-sm-2 p-md-3">
             <button type="button" class="btn btn-outline-danger openModalButton" id="btnOpenModal">
               <span class="btnText h1">Пройди тест и получи результат</span>
             </button>
@@ -75,7 +61,7 @@
   </section>
 
   <div class="modal" tabindex="-1" role="dialog" id="modalBlock">
-    <div class="modal-dialog  modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Ответь на вопрос:</h5>
@@ -83,23 +69,23 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body  d-flex flex-column align-items-center" id="modalBody">
+        <div class="modal-body d-flex flex-column align-items-center" id="modalBody">
           <h5 class="question p-1 p-sm-2 p-md-3 text-center" id="question"></h5>
           <div class="answers w-100 p-1 p-sm-2 p-md-3" id="answers">
-            <form action="#" id="formAnswers" class="formAnswers d-flex flex-wrap justify-content-around">
-            </form>
+            <form action="#" id="formAnswers" class="formAnswers d-flex flex-wrap justify-content-around"></form>
           </div>
         </div>
         <div class="modal-footer" id="modalFooter">
-          <button type="button" class="btn btn-secondary prevBtn" data-dismiss="modal" id="prev">Prev</button>
-          <button type="button" class="btn btn-secondary nextBtn" data-dismiss="modal" id="next">Next</button>
+          <button type="button" class="btn btn-secondary prevBtn" id="prev">Prev</button>
+          <button type="button" class="btn btn-secondary nextBtn" id="next">Next</button>
           <button type="button" class="btn btn-primary sendBtn d-none" id="send">Send</button>
         </div>
       </div>
     </div>
   </div>
 
-  <script src="./script/script.js"></script>
+  <script src='script/script.js' type="module"></script>
+
 </body>
 
 </html>
