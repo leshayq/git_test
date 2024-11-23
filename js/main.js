@@ -8,7 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const passwordInput = document.querySelector('#password');
     const loginForm = document.querySelector('#logInForm');
     const loginErrorStyle = '2px solid red';
+    const defaultBorderStyle = '2px solid black';
     const authDetailsContainer = document.querySelector('.auth-details');
+
+    let attemptedLogin = false; 
 
     const checkAuth = () => {
         const userLogin = localStorage.getItem('userLogin');
@@ -33,23 +36,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const openAuthModal = () => {
         modalAuth.style.display = 'block';
+        document.body.style.overflow = 'hidden'; 
+
+        
+        if (!attemptedLogin) {
+            loginInput.style.border = defaultBorderStyle;
+            passwordInput.style.border = defaultBorderStyle;
+        }
     };
 
     const closeAuthModal = () => {
         modalAuth.style.display = 'none';
+        document.body.style.overflow = ''; 
     };
 
     const login = (event) => {
         event.preventDefault();
+        attemptedLogin = true;
+
         const loginValue = loginInput.value.trim();
         const passwordValue = passwordInput.value.trim();
 
+        let hasError = false;
+
         if (!loginValue) {
             loginInput.style.border = loginErrorStyle;
+            hasError = true;
+        } else {
+            loginInput.style.border = defaultBorderStyle;
+        }
+
+        if (!passwordValue) {
+            passwordInput.style.border = loginErrorStyle;
+            hasError = true;
+        } else {
+            passwordInput.style.border = defaultBorderStyle;
+        }
+
+        if (hasError) {
             return;
         }
 
-        loginInput.style.border = '';
         localStorage.setItem('userLogin', loginValue);
         localStorage.setItem('userPassword', passwordValue);
         checkAuth();
@@ -62,14 +89,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
         loginInput.value = '';
         passwordInput.value = '';
-
+        attemptedLogin = false; 
         checkAuth();
+    };
+
+    const handleModalClick = (event) => {
+        if (event.target === modalAuth) {
+            closeAuthModal();
+        }
     };
 
     authButton.addEventListener('click', openAuthModal);
     closeAuthButton.addEventListener('click', closeAuthModal);
     logoutButton.addEventListener('click', logout);
     loginForm.addEventListener('submit', login);
+    modalAuth.addEventListener('click', handleModalClick);
 
     checkAuth();
 });
