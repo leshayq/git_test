@@ -7,6 +7,12 @@ body {
     padding-top: 44px;
 }
 
+.swiper {
+    width: 1000px;
+    height: 300px;
+    margin-bottom: 50px;
+}
+
 a,
 button {
     cursor: pointer;
