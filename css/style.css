@@ -7,12 +7,6 @@ body {
     padding-top: 44px;
 }
 
-.swiper {
-    width: 1000px;
-    height: 300px;
-    margin-bottom: 50px;
-}
-
 a,
 button {
     cursor: pointer;
@@ -269,7 +263,11 @@ button {
     flex-direction: column;
 }
 
-
+.button-cart {
+    background-color: white;
+    color: white;
+    border: none;
+}
 
 .restaurants .card-text {
     min-height: auto;
