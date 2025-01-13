@@ -841,3 +841,19 @@ button {
         margin-right: 0;
     }
 }
+
+.phone-label {
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.input-phone {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    padding: 5px;
+    border-radius: 6px;
+    border: gray solid 1px;
+    width: 300px;
+}

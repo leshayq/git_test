@@ -1,3 +1,4 @@
+import { database, ref, set, push } from './firebase.js';
 const swiper = new Swiper('.swiper', {
 		loop: true,
 		pagination: {
@@ -43,6 +44,46 @@ const modalBody = document.querySelector('.modal-body');
 const modalPrice = document.querySelector('.modal-pricetag');
 const buttonClearCard = document.querySelector('.clear-cart');
 
+document.querySelector('.button-order').addEventListener('click', () => {
+    const phoneInput = document.querySelector('.input-phone');
+    const phone = phoneInput.value.trim();
+
+    if (!phone) {
+        alert('Будь ласка, введіть номер телефону!');
+        phoneInput.style.borderColor = 'red';
+        return;
+    }
+
+    phoneInput.style.borderColor = '';
+
+    const order = {
+        user: login || 'Гість',
+        phone,
+        items: cart.map(({ id, title, cost, count }) => ({
+            id,
+            title,
+            cost,
+            count
+        })),
+        total: cart.reduce((sum, item) => sum + parseFloat(item.cost) * item.count, 0),
+        timestamp: new Date().toISOString()
+    };
+
+    const ordersRef = ref(database, 'orders');
+    const newOrderRef = push(ordersRef);
+    set(newOrderRef, order)
+        .then(() => {
+            alert('Ваше замовлення успішно оформлено!');
+            cart.length = 0; 
+            saveCart();
+            renderCart();
+            toggleModal();
+        })
+        .catch((error) => {
+            console.error('Помилка при оформленні замовлення:', error);
+            alert('Сталася помилка, спробуйте ще раз.');
+        });
+});
 
 let login = localStorage.getItem(KEY_LOGIN);
 const cart = JSON.parse(localStorage.getItem(`${KEY_LOGIN}_${login}`)) || [];

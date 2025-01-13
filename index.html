@@ -129,8 +129,13 @@
 				<h3 class="modal-title">Кошик</h3>
 				<button class="close">&times;</button>
 			</div>
+			<label class="phone-label">
+				<span>Ваш телефон:</span>
+				<input type="tel" class="input-phone" placeholder="+380999999999" required>
+			</label>
 			<!-- /.modal-header -->
 			<div class="modal-body">
+
 				<div class="food-row">
 					<span class="food-name">Рол вугор стандарт</span>
 					<strong class="food-price">250 ₴</strong>
@@ -144,11 +149,13 @@
 			</div>
 			<!-- /.modal-body -->
 			<div class="modal-footer">
+
 				<span class="modal-pricetag">1250 ₴</span>
 				<div class="footer-buttons">
-					<button class="button button-primary">Оформити замовлення</button>
+					<button class="button button-primary button-order">Оформити замовлення</button>
 					<button class="button clear-cart">Очистити кошик</button>
 				</div>
+				
 			</div>
 			<!-- /.modal-footer -->
 		</div>
@@ -184,6 +191,7 @@
 	<!-- <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script> -->
 	<script src="js/disabledSroll.js"></script>
 	<script src="js/main.js" type="module"></script>
+	<script type="module" src="./js/firebase.js"></script>
 </body>
 
 </html>
